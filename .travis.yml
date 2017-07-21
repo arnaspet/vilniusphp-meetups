@@ -1,0 +1,10 @@
+before_script:
+  - git config user.name "Travis-CI"
+  - git config user.email "noreply@travis-ci.org"
+
+script:
+  - git checkout -b master
+  - make
+  - if git status | grep -q README.md; then git add README.md; fi
+  - 'git commit -m "Update README.md"'
+  - git push origin master
